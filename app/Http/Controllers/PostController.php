@@ -10,6 +10,8 @@ class PostController extends Controller
 {
     public function index(Request $request): View{
         $posts= Post::all();
+
+
         return view('posts.index', compact('posts'));
 
     }
