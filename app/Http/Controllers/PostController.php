@@ -15,8 +15,43 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
 
     }
-    public function edit(Request $request): View
+    public function create(): View
     {
-        return view('post.edit', ['user' => $request->user()]);
+        return view('posts.createPost');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required',
+            'picture_url' => 'required|url|max:2048',
+        ]);
+
+        Post::create([
+            'user_id' => auth()->id(),
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'picture_url' => $request->input('picture_url'),
+        ]);
+
+        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
+    }
+    public function edit(Post $post)
+    {
+        return view('posts.editPost', compact('post'));
+    }
+
+    public function update(Request $request, Post $post)
+{
+    $request->validate([
+        'title' => 'required|max:100',
+        'content' => 'required',
+        'picture_url' => 'required|url|max:2048',
+    ]);
+
+    $post->update($request->all());
+
+    return redirect()->route('posts.index')->with('success', 'Post modifié avec succès.');
+}
 };
