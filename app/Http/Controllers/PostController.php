@@ -8,13 +8,22 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(Request $request): View{
-        $posts= Post::all();
+    /**
+     * Affiche la liste des posts.
+     */
+    public function index(Request $request): View
+    {   
+        // Récupère tous les posts avec les utilisateurs associés
+        $posts= Post::with('user')->latest()->get();
 
 
-        return view('posts.index', compact('posts'));
+        return view('dashboard', ['posts' => $posts]);
 
     }
+    
+    /**
+     * Affiche le formulaire d'édition.
+     */
     public function edit(Request $request): View
     {
         return view('post.edit', ['user' => $request->user()]);

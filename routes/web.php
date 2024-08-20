@@ -31,5 +31,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/dashboard', [PostController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::post('/create', [PostController::class,'create']);
 
 require __DIR__.'/auth.php';
