@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+
 class ProfileController extends Controller
 {
     /**
@@ -69,6 +70,7 @@ class ProfileController extends Controller
     public function show($id): View
     {
         $user = User::with('posts')->findOrFail($id);
+
         return view('profile.show', compact('user'));
     }
 }
