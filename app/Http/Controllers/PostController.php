@@ -17,7 +17,7 @@ class PostController extends Controller
     }
     public function create(): View
     {
-        return view('posts.create');
+        return view('posts.createPost');
     }
 
     public function store(Request $request)
@@ -37,8 +37,21 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
-    public function edit(Request $request): View
+    public function edit(Post $post)
     {
-        return view('post.edit', ['user' => $request->user()]);
+        return view('posts.editPost', compact('post'));
     }
+
+    public function update(Request $request, Post $post)
+{
+    $request->validate([
+        'title' => 'required|max:100',
+        'content' => 'required',
+        'picture_url' => 'required|url|max:2048',
+    ]);
+
+    $post->update($request->all());
+
+    return redirect()->route('posts.index')->with('success', 'Post modifié avec succès.');
+}
 };
