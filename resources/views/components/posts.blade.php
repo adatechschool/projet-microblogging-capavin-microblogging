@@ -7,13 +7,18 @@
                     <h2 class="text-sm text-gray-600">de {{ $post->user->name }}</h2>
                 </div>
 
-                {{-- Affichage de l'image associée au post --}}
-                <img src="{{ $post->picture_url }}" alt="{{ $post->title }}" class="w-full mx-auto my-4">
 
-                {{-- Affichage du contenu du post --}}
-                <div class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p class="p-4">{{ $post->content }}</p>
-                </div>
+                
+                {{-- Conteneur relatif pour l'image et le texte --}}
+                <div class="relative group">
+                    {{-- Affichage de l'image associée au post --}}
+                    <img src="{{ $post->picture_url }}" alt="{{ $post->title }}" class="w-full mx-auto my-4">
+
+                    {{-- Affichage du contenu du post --}}
+                    <div class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <p class="p-4">{{ $post->content }}</p>
+                    </div>                
+                </div>                
             </div>
         @endforeach
     </div>
