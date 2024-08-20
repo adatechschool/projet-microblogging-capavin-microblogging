@@ -33,8 +33,12 @@
                         </div>
                     @empty
                         <p class="mt-1 text-sm text-gray-600">No posts available.</p>
+                        
                     @endforelse
+                    <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary">Modifier</a>
+
                 </div>
+                
             </div>
         </div>
     </div>

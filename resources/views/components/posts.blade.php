@@ -18,7 +18,9 @@
                     <div class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                         <p class="p-4">{{ $post->content }}</p>
                     </div>                
-                </div>                
+                </div>     
+                <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary">Modifier</a>
+           
             </div>
         @endforeach
     </div>
