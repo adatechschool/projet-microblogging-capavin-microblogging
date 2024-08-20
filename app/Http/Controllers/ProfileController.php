@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,13 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        if ($request->user()) {
+            $user = $request->user();
+        } else {
+            $user = null; // Ou créez un utilisateur par défaut si nécessaire
+        }
+
+        return view('profile.edit', compact('user'));
     }
 
     /**
@@ -56,5 +61,14 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Show the public profile of a user.
+     */
+    public function show($id): View
+    {
+        $user = User::with('posts')->findOrFail($id);
+        return view('profile.show', compact('user'));
     }
 }
