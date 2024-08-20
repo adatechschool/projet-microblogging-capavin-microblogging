@@ -4,7 +4,7 @@
             <div class="mb-8">
                 <div class="flex justify-between items-center">
                     <h1 class="text-lg font-bold">{{ $post->title }}</h1>
-                    <h2 class="text-sm text-gray-600">de {{ $post->user->name }}</h2>
+                    <h2 class="text-sm text-gray-600">de <a href="{{ route('profile.show', $post->user->id) }}" >{{ $post->user->name }}</a></h2>
                 </div>
 
 
