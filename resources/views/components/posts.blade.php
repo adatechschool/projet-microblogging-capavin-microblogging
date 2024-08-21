@@ -21,7 +21,8 @@
                 </div>    
                 {{-- Verifie si l'utilisateur connecté est l'auteur du post --}}
                 @if(auth()->user() && auth()->user()->id === $post->user->id)
-                <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary">Modifier</a>
+                <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary"><x-primary-button class="ms-4">
+                {{ __('Modifier') }}</x-primary-button></a>
            @endif
             </div>
         @endforeach
