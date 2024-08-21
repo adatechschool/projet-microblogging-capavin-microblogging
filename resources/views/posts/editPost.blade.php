@@ -27,10 +27,13 @@
                             </div>
                             
                             <div class="mb-4">
+                                <img src="{{ $post->picture_url }}" alt="{{ $post->content }}">
+                            </div>
+                            <div class="mb-4">
                                 {{-- <label for="picture_url" class="block text-gray-700 text-sm font-bold mb-2">Picture URL:</label> --}}
                                 <x-input-label for="picture_url" :value="__('URL de l\'image')" />
                                 {{-- <input type="url" name="picture_url" id="picture_url" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required> --}}
-                                <x-text-input id="picture_url" class="block mt-1 w-full" type="text" name="picture_url" value="{{ $post->picture_url }} required />
+                                <x-text-input id="picture_url" class="block mt-1 w-full" type="text" name="picture_url" value="{{ $post->picture_url }}" required />
                             </div>
 
                             <x-primary-button class="ms-4">
