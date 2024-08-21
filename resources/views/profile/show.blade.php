@@ -16,14 +16,18 @@
                         {{ $user->biography ?? 'No biography provided.' }}
                     </p>
                     @if(auth()->user() && auth()->user()->id === $user->id)
-                        <button id="edit-biography-button" class="btn btn-primary mt-4">Modifier</button>
+                        <x-primary-button id="edit-biography-button" class="mt-4">
+                            {{ __('Modifier') }}
+                        </x-primary-button>
                         <form id="biography-form" action="{{ route('profile.updateBiography', $user->id) }}" method="POST" style="display: none;">
                             @csrf
                             <textarea id="biography-input" name="biography" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ $user->biography ?? '' }}</textarea>
                             @error('biography')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
-                            <button type="submit" class="btn btn-primary mt-4">Enregistrer</button>
+                            <x-primary-button type="submit" class="mt-4">
+                                {{ __('Enregistrer les modifications') }}
+                            </x-primary-button>
                         </form>
                     @endif
                 </div>
@@ -44,7 +48,11 @@
                         <p class="mt-1 text-sm text-gray-600">No posts available.</p>
                     @endforelse
                     @if(auth()->user() && auth()->user()->id === $user->id)
-                        <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary mt-4">Modifier</a>
+                        <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary mt-4">
+                            <x-primary-button class="ms-4">
+                                {{ __('Modifier') }}
+                            </x-primary-button>
+                        </a>
                     @endif
                 </div>
             </div>
