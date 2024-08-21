@@ -1,5 +1,3 @@
-<!-- resources/views/profile/show.blade.php -->
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -14,9 +12,20 @@
                     <h3 class="text-lg font-medium text-gray-900">
                         Biography
                     </h3>
-                    <p class="mt-1 text-sm text-gray-600">
+                    <p class="mt-1 text-sm text-gray-600" id="biography-text">
                         {{ $user->biography ?? 'No biography provided.' }}
                     </p>
+                    @if(auth()->user() && auth()->user()->id === $user->id)
+                        <button id="edit-biography-button" class="btn btn-primary mt-4">Modifier</button>
+                        <form id="biography-form" action="{{ route('profile.updateBiography', $user->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            <textarea id="biography-input" name="biography" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ $user->biography ?? '' }}</textarea>
+                            @error('biography')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <button type="submit" class="btn btn-primary mt-4">Enregistrer</button>
+                        </form>
+                    @endif
                 </div>
             </div>
 
@@ -33,13 +42,20 @@
                         </div>
                     @empty
                         <p class="mt-1 text-sm text-gray-600">No posts available.</p>
-                        
                     @endforelse
-                    <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary">Modifier</a>
-
+                    @if(auth()->user() && auth()->user()->id === $user->id)
+                        <a href="{{ route('posts.editPost', $post->id) }}" class="btn btn-primary mt-4">Modifier</a>
+                    @endif
                 </div>
-                
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('edit-biography-button').addEventListener('click', function() {
+            document.getElementById('biography-text').style.display = 'none';
+            document.getElementById('edit-biography-button').style.display = 'none';
+            document.getElementById('biography-form').style.display = 'block';
+        });
+    </script>
 </x-app-layout>

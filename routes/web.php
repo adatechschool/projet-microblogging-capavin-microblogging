@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Route pour ajouter une biographie
+Route::get('/profile/{user}/edit-biography', [ProfileController::class, 'editBiography'])->name('profile.editBiography');
+Route::post('/profile/{user}/update-biography', [ProfileController::class, 'updateBiography'])->name('profile.updateBiography');
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('createPost');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
@@ -42,6 +45,8 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 Route::get('/dashboard', [PostController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+
 
 
 require __DIR__.'/auth.php';

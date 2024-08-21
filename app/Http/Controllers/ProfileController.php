@@ -73,4 +73,23 @@ class ProfileController extends Controller
 
         return view('profile.show', compact('user'));
     }
+/**
+     * Add the biography  of a user.
+     */
+    public function editBiography(User $user)
+    {
+        return view('profile.edit-biography', compact('user'));
+    }
+
+    public function updateBiography(Request $request, User $user)
+    {
+        $request->validate([
+            'biography' => 'required|string|max:255',
+        ]);
+
+        $user->biography = $request->input('biography');
+        $user->save();
+
+        return redirect()->route('profile.show', $user->id)->with('success', 'Biography updated successfully.');
+}
 }
