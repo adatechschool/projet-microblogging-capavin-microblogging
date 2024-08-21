@@ -14,9 +14,9 @@
         @csrf
         @method('PUT')
             <div class="mb-4">
-                                <x-input-label for="titre" :value="__('Titre')" />
+                                <x-input-label for="title" :value="__('Titre')" />
                                 {{-- <label for="title" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full">Title:</label> --}}
-                                <x-text-input id="titre" class="block mt-1 w-full" type="text" name="titre" value="{{ $post->title }}" required autofocus autocomplete="titre" />
+                                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" value="{{ $post->title }}" required autofocus autocomplete="titre" />
                                 {{-- <input type="text" name="title" id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required> --}}
                             </div>
 
@@ -33,7 +33,7 @@
                                 {{-- <label for="picture_url" class="block text-gray-700 text-sm font-bold mb-2">Picture URL:</label> --}}
                                 <x-input-label for="picture_url" :value="__('URL de l\'image')" />
                                 {{-- <input type="url" name="picture_url" id="picture_url" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required> --}}
-                                <x-text-input id="picture_url" class="block mt-1 w-full" type="text" name="picture_url" value="{{ $post->picture_url }}" required />
+                                <x-text-input id="picture_url" class="block mt-1 w-full" type="url" name="picture_url" value="{{ $post->picture_url }}" required />
                             </div>
 
                             <x-primary-button class="ms-4">
