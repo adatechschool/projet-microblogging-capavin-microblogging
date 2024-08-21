@@ -36,7 +36,7 @@
             <div class="flex">
                 <h1 class="flex-1">Entrez dans un monde en couleur et en latin !</h1>
                 <div class="flex-1 aspect-square">
-                  <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1650218704614-d6979ad5dfb0?q=80&w=1929&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                  <img src="{{ asset('images/1.png') }}" alt="Logo" style="transform: scale(2)>
                 </div>
             </div>
               
